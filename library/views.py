@@ -41,7 +41,7 @@ def book_all (request):
 @login_required
 @permission_required('library.book_admin',raise_exception = True)
 def book_update (request, book_id):
-    boocd ..k = get_object_or_404(Book, id = book_id)
+    book = get_object_or_404(Book, id = book_id)
     if request.method=='POST':
         received_form = BookForm(request.POST, instance = book)  
         if received_form.is_valid(): 
