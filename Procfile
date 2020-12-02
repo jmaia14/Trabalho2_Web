@@ -1,1 +1,1 @@
-web: gunicorn djTrabalho2_Web.wsgi --log-file -
+web: gunicorn Trabalho2_Web.wsgi --log-file -
