@@ -37,6 +37,7 @@ urlpatterns = [
     path('user/create',views.user_create, name='user_create'),
     path('user/login/',views.user_login, name='user_login'),
     path('user/logout',views.user_logout, name='user_logout'),
+    path('user/verify_username', views.user_verify_username, name='user_verify_username'),
     
     path('loan/<int:book_id>/do',views.loan_do, name='loan_do'),
     path('loan/<int:book_id>/undo',views.loan_undo, name='loan_undo'),    

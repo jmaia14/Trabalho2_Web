@@ -1,6 +1,38 @@
 {% extends "base.html" %}
 {% block title %}Signup{% endblock %}
+{% block javascript %}
+onload = function() {
+  document.getElementById('id_username').addEventListener('keyup', verifyUsername);
+}
+
+function verifyUsername(e) {
+  var usernameField = document.getElementById('id_username');
+  usernameValue = usernameField.value;
+  xmlhttp = new XMLHttpRequest();
+  xmlhttp.open('GET',
+    '/user/verify_username' + "?username=" + encodeURIComponent(usernameValue),
+    true);
+  xmlhttp.onreadystatechange = verifyUsernameCallBack;
+  xmlhttp.send(null);
+}
+
+function verifyUsernameCallBack() {
+  if(xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+    var response = JSON.parse(xmlhttp.responseText)
+    message = response.exists ? "Esse usuário já existe" : "Esse usuário ainda não existe";
+    color = response.exists ? "#ff0000" : "#000000";
+    document.
+      getElementById('idError').
+      replaceChild(
+        document.createTextNode(message),
+        document.getElementById('idError').firstChild);
+    document.getElementById('id_username').style =
+      'border: 2px solid ' + color;
+  }
+}
+{% endblock %}
 {% block content %}
+    <div id='idError'>&nbsp;</div>
     <form action="" method="post">
         {% csrf_token %}
         <div>

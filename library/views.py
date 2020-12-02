@@ -18,8 +18,9 @@ from django.contrib.auth.decorators import permission_required
 from django.contrib.auth import logout
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
-
-
+from django.contrib.auth.models import User
+from django.http import JsonResponse
+ 
 # Create your views here.
 def home (request):
     form = SearchBookForm(request.GET)
@@ -142,6 +143,14 @@ def user_create (request):
             form = received_form
     form = form or RegisterUserForm() 
     return render(request,'user/create.html',{'form': form})     
+    
+def user_verify_username(request):
+    username= request.GET.get("username", None)
+    exists = User.objects.filter(username__iexact=username).exists()
+    response = {
+        'exists': exists,
+    }
+    return JsonResponse(response)
 
 def user_login(request):
     if request.method == 'POST':
