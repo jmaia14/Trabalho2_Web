@@ -1,0 +1,22 @@
+<html>
+    <head>
+        <title>
+            Biblioteca: {% block title %}{% endblock %}
+        </title>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="{% url 'home' %}">Home Page</a></li>
+                <li><a href="{% url 'user_create' %}">Signup</a></li>
+                <li><a href="{% url 'user_login' %}">Login</a></li>
+                <li><a href="{% url 'user_logout' %}">Logout</a></li>
+                <li><a href="{% url 'book_all' %}">Livros</a></li>
+                <li><a href="{% url 'author_all' %}">Autores</a></li>
+            </ul>
+        </nav>
+        {% block content %}
+            
+        {% endblock %}
+    </body>
+</html>

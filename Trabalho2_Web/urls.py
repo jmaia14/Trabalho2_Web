@@ -15,7 +15,29 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from library import views
 
-urlpatterns = [
+urlpatterns = [    
+    path('', views.home, name='home'),
+    
     path('admin/', admin.site.urls),
+    
+    path('book/all',views.book_all,name='book_all'),
+    path('book/create',views.book_create,name='book_create'),
+    path('book/<int:book_id>/update',views.book_update,name='book_update'),
+    path('book/<int:book_id>/view',views.book_view,name='book_view'),
+    path('book/<int:book_id>/delete',views.book_delete,name='book_delete'),
+    
+    path('author/all',views.author_all,name='author_all'),
+    path('author/create',views.author_create,name='author_create'),
+    path('author/<int:author_id>/update',views.author_update,name='author_update'),
+    path('author/<int:author_id>/view',views.author_view,name='author_view'),
+    path('author/<int:author_id>/delete',views.author_delete,name='author_delete'),
+    
+    path('user/create',views.user_create, name='user_create'),
+    path('user/login/',views.user_login, name='user_login'),
+    path('user/logout',views.user_logout, name='user_logout'),
+    
+    path('loan/<int:book_id>/do',views.loan_do, name='loan_do'),
+    path('loan/<int:book_id>/undo',views.loan_undo, name='loan_undo'),    
 ]

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block content %}
+    {{user}}
+    <form action="" method="GET"> 
+        {{form.as_p}}
+        <input type="submit" value="Submit">
+    </form>
+    {% for book in books %}
+        <div>
+            {{book.title}}  
+        </div>
+        <div>
+            {{book.isbn}}  
+        </div>
+        <div>
+            <a href="{% url 'loan_do' book.id %}">
+              Emprestar  
+            </a>
+        </div>
+        <div>
+            <a href="{% url 'loan_undo' book.id %}">
+              Devolver  
+            </a>
+        </div>
+    {% endfor %}
+{% endblock %}

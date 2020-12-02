@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Pesquisa{% endblock %}
+{% block content %}
+    <form action="" method="GET">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        </table>
+        <input type="submit" value="Submit">
+    </form>
+    <table>
+        <tr>
+            <th>ISBN</th>
+            <th>Título</th>
+            <th>Autor</th>
+        </tr>
+        {% for book in books %}
+            <tr>
+                <td>{{book.isbn}}</td>
+                <td>
+                    {{book.title}}
+                </td>
+                 <td>
+                    {{book.author}}
+                </td>
+                <td>
+                    <a href="{% url 'book_lend' book.id %}">Emprestar</a>   
+                </td>
+            </tr>            
+        {% endfor %}
+    </table>
+{% endblock %}

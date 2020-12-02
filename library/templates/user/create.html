@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}Signup{% endblock %}
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>
+            <label for="{{form.username.id_for_label}}">{{form.username.label}}</label>
+            {{form.username}}
+            {{form.username.errors}}
+        </div>
+        <div>
+            <label for="{{form.password1.id_for_label}}">{{form.password1.label}}</label>
+            {{form.password1}}
+            {{form.password1.errors}}
+        </div>
+        <div>
+            <label for="{{form.password2.id_for_label}}">{{form.password2.label}}</label>
+            {{form.password2}}
+            {{form.password2.errors}}
+        </div>
+        <div>
+            <label for="{{form.book_admin.id_for_label}}">{{form.book_admin.label}}</label>
+            {{form.book_admin}}
+            {{form.book_admin.errors}}
+        </div>
+        <div>
+            <label for="{{form.author_admin.id_for_label}}">{{form.author_admin.label}}</label>
+            {{form.author_admin}}
+            {{form.author_admin.errors}}
+        </div>
+        
+    <input type="submit" value="Submit">
+    </form>
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li> {{message}} </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
